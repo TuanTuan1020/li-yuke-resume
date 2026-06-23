@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李予珂 - 个人简历</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B5B73;
+            --secondary: #B8A9C9;
+            --accent: #E8D5B7;
+            --text: #2C2C2C;
+            --text-light: #666;
+            --bg: #FAF8F5;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, #8B7B95 50%, var(--secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232,213,183,0.3) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            bottom: -50px;
+            left: -50px;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.5em;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content .tagline {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.8;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 2;
+        }
+
+        .contact-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-badge {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-badge:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.2em;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(107,91,115,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card p, .info-card li {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-card ul li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(107,91,115,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(107,91,115,0.15);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary), var(--accent));
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 30px);
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: calc(50% + 30px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 3px var(--secondary);
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(107,91,115,0.08);
+            max-width: 350px;
+        }
+
+        .timeline-content .date {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .cert-section {
+            background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%);
+            padding: 5rem 2rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 2rem auto 0;
+        }
+
+        .cert-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 15px rgba(107,91,115,0.08);
+        }
+
+        .cert-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .cert-info h4 {
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .cert-info p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.2em;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer .contact-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+        }
+
+        .footer .contact-links a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+                letter-spacing: 0.15em;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-right: 0;
+                padding-left: 50px;
+                justify-content: flex-start;
+            }
+
+            .timeline-item:nth-child(even) {
+                padding-left: 50px;
+            }
+
+            .timeline-item::before {
+                left: 20px;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>李予珂</h1>
+            <p class="subtitle">美术学 · 创意工作者</p>
+            <p class="tagline">热爱艺术与教育，擅长多元创意表达。将美术素养融入手作、数字绘画、烘焙与美妆，致力于用创意点亮生活。</p>
+            <div class="contact-badges">
+                <span class="contact-badge">18745490211</span>
+                <span class="contact-badge">1713845445@qq.com</span>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+            </svg>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">个人简介</h2>
+        <p class="section-subtitle">ABOUT ME</p>
+        <div class="about-grid">
+            <div class="info-card">
+                <h3>教育背景</h3>
+                <p><strong>杭州师范大学</strong><br>2022 - 2026<br>美术学（师范）· 本科</p>
+            </div>
+            <div class="info-card">
+                <h3>证书资质</h3>
+                <ul>
+                    <li>高中美术教师资格证</li>
+                    <li>普通话水平测试二级乙等</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); max-width: 100%; padding: 5rem 2rem;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h2 class="section-title">专业技能</h2>
+            <p class="section-subtitle">SKILLS & EXPERTISE</p>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>美术教育</h3>
+                    <p>小学美术教学<br>高考素描助教<br>机构培训讲师</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">✏️</div>
+                    <h3>绘画创作</h3>
+                    <p>素描 · 油画<br>板绘原画<br>商业插画</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🪡</div>
+                    <h3>手工创意</h3>
+                    <p>扭扭棒手工<br>拼豆创作<br>BJD妆面</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💅</div>
+                    <h3>美甲设计</h3>
+                    <p>创意美甲<br>款式设计<br>色彩搭配</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🍰</div>
+                    <h3>烘焙甜点</h3>
+                    <p>蛋糕制作<br>蛋挞烘焙<br>创意饼干</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💄</div>
+                    <h3>美妆造型</h3>
+                    <p>日常妆容<br>创意妆面<br>整体造型</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">实践经历</h2>
+        <p class="section-subtitle">EXPERIENCE</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="date">实习经历</div>
+                    <h3>小学美术教师</h3>
+                    <p>杭州天地实验小学<br>担任三年级美术教师，独立完成课堂教学设计与实施，指导学生完成美术作品创作，获得师生一致好评。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="date">助教经历</div>
+                    <h3>高考素描助教</h3>
+                    <p>美术高考考前班<br>协助主讲教师进行素描教学，辅导美术高考生掌握素描技法与应试技巧，帮助学生提升画面表现力。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cert-section">
+        <h2 class="section-title">资质证书</h2>
+        <p class="section-subtitle">CERTIFICATIONS</p>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <div class="cert-icon">🎓</div>
+                <div class="cert-info">
+                    <h4>高中美术教师资格证</h4>
+                    <p>具备高中美术教学资质</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">🗣️</div>
+                <div class="cert-info">
+                    <h4>普通话二级乙等</h4>
+                    <p>普通话水平测试证书</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <h2>李予珂</h2>
+        <p>美术学（师范）| 杭州师范大学</p>
+        <p>热爱创作，乐于分享，期待与您合作</p>
+        <div class="contact-links">
+            <a href="tel:18745490211">18745490211</a>
+            <a href="mailto:1713845445@qq.com">1713845445@qq.com</a>
+        </div>
+    </footer>
+
+</body>
+</html>
